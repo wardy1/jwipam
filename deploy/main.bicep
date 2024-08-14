@@ -39,13 +39,13 @@ param namePrefix string = 'ipam'
 @description('IPAM Resource Names')
 var resourceNames = {
   functionName: 'func-cps-ipam-dev-uksouth-001'
-  appServiceName: 'asn-cps-ipam-dev-uksouth-001'
+  appServiceName: 'as-cps-ipam-dev-uksouth-001'
   functionPlanName: 'funcpn-cps-ipam-dev-uksouth-001'
-  appServicePlanName: 'asp-cps-ipam-dev-uksouth-001'
-  cosmosAccountName: 'cosmos-cps-ipam-dev-uksouth-001'
+  appServicePlanName: 'asep-cps-ipam-dev-uksouth-001'
+  cosmosAccountName: 'cm-cps-ipam-dev-uksouth-001'
   cosmosContainerName: 'cosmos-ctr-cps-ipam-dev-uksouth-001'
   cosmosDatabaseName: 'cosmos-db-cps-ipam-dev-uksouth-001'
-  keyVaultName: 'kv-jwt-uksouth-003'
+  keyVaultName: 'kv-jwt-uksouth-004'
   workspaceName: 'log-analytics-cps-ipam-dev-uksouth-001'
   managedIdentityName: '${namePrefix}-mi-${uniqueString(guid)}'
   resourceGroupName: 'rg-cps-ipam-dev-uksouth-001'
@@ -95,7 +95,6 @@ module keyVault './modules/keyVault.bicep' = {
     engineAppId: engineAppId
     engineAppSecret: engineAppSecret
     workspaceId: logAnalyticsWorkspace.outputs.workspaceId
-    disablePublicAccess: 'Disabled'
   }
 }
 
@@ -105,7 +104,7 @@ module privateEndpoint 'br/public:avm/res/network/private-endpoint:0.7.0' = {
   params: {
     // Required parameters
     name: 'ipamkv'
-    subnetResourceId: '/subscriptions/f79a69b8-c7e7-413d-82c9-c7a111fc04b5/resourceGroups/rg-vnw-hub-uks-1/providers/Microsoft.Network/virtualNetworks/vnw-hub-uks-1/subnets/privateendpoints'
+    subnetResourceId: '/subscriptions/5e0b33cf-2cfb-487b-ac44-f9877e08edb8/resourceGroups/rg-vnw-hub-uks-1/providers/Microsoft.Network/virtualNetworks/vnw-hub-uks-1/subnets/privateendpoints'
     // Non-required parameters
     customNetworkInterfaceName: 'ipamkvnic'
     ipConfigurations: [
@@ -114,7 +113,7 @@ module privateEndpoint 'br/public:avm/res/network/private-endpoint:0.7.0' = {
         properties: {
           groupId: 'vault'
           memberName: 'default'
-          privateIPAddress: '10.10.0.10'
+          privateIPAddress: '10.0.0.10'
         }
       }
     ]
@@ -126,7 +125,7 @@ module privateEndpoint 'br/public:avm/res/network/private-endpoint:0.7.0' = {
     privateDnsZoneGroup: {
       privateDnsZoneGroupConfigs: [
         {
-          privateDnsZoneResourceId: '/subscriptions/f79a69b8-c7e7-413d-82c9-c7a111fc04b5/resourceGroups/rg-privdns-uks-1/providers/Microsoft.Network/privateDnsZones/privatelink.vaultcore.azure.net'
+          privateDnsZoneResourceId: '/subscriptions/5e0b33cf-2cfb-487b-ac44-f9877e08edb8/resourceGroups/rg-privdns-uks-1/providers/Microsoft.Network/privateDnsZones/privatelink.vaultcore.azure.net'
         }
       ]
     }
@@ -137,7 +136,7 @@ module privateEndpoint 'br/public:avm/res/network/private-endpoint:0.7.0' = {
           groupIds: [
             'vault'
           ]
-          privateLinkServiceId: '/subscriptions/f79a69b8-c7e7-413d-82c9-c7a111fc04b5/resourceGroups/rg-cps-ipam-dev-uksouth-001/providers/Microsoft.KeyVault/vaults/kv-jwt-uksouth-002'
+          privateLinkServiceId: '/subscriptions/5e0b33cf-2cfb-487b-ac44-f9877e08edb8/resourceGroups/rg-cps-ipam-dev-uksouth-001/providers/Microsoft.KeyVault/vaults/kv-jwt-uksouth-003'
         }
       }
     ]
@@ -164,7 +163,6 @@ module cosmos './modules/cosmos.bicep' = {
     keyVaultName: keyVault.outputs.keyVaultName
     workspaceId: logAnalyticsWorkspace.outputs.workspaceId
     principalId: managedIdentity.outputs.principalId
-    DisablePublicAccess: 'Disabled'
   }
 }
 
@@ -174,7 +172,7 @@ module privateEndpointcosmos 'br/public:avm/res/network/private-endpoint:0.7.0' 
   params: {
     // Required parameters
     name: 'ipam-cosmos'
-    subnetResourceId: '/subscriptions/f79a69b8-c7e7-413d-82c9-c7a111fc04b5/resourceGroups/rg-vnw-hub-uks-1/providers/Microsoft.Network/virtualNetworks/vnw-hub-uks-1/subnets/privateendpoints'
+    subnetResourceId: '/subscriptions/5e0b33cf-2cfb-487b-ac44-f9877e08edb8/resourceGroups/rg-vnw-hub-uks-1/providers/Microsoft.Network/virtualNetworks/vnw-hub-uks-1/subnets/privateendpoints'
     location: location
     privateLinkServiceConnections: [
       {
@@ -183,7 +181,7 @@ module privateEndpointcosmos 'br/public:avm/res/network/private-endpoint:0.7.0' 
           groupIds: [
             'Sql'
           ]
-          privateLinkServiceId: '/subscriptions/f79a69b8-c7e7-413d-82c9-c7a111fc04b5/resourceGroups/rg-cps-ipam-dev-uksouth-001/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-cps-ipam-dev-uksouth-001'
+          privateLinkServiceId: '/subscriptions/5e0b33cf-2cfb-487b-ac44-f9877e08edb8/resourceGroups/rg-cps-ipam-dev-uksouth-001/providers/Microsoft.DocumentDB/databaseAccounts/cm-cps-ipam-dev-uksouth-001'
         }
       }
     ]
@@ -243,7 +241,7 @@ module privateEndpointappservice 'br/public:avm/res/network/private-endpoint:0.7
   params: {
     // Required parameters
     name: 'ipam-appservice'
-    subnetResourceId: '/subscriptions/f79a69b8-c7e7-413d-82c9-c7a111fc04b5/resourceGroups/rg-vnw-hub-uks-1/providers/Microsoft.Network/virtualNetworks/vnw-hub-uks-1/subnets/privateendpoints'
+    subnetResourceId: '/subscriptions/5e0b33cf-2cfb-487b-ac44-f9877e08edb8/resourceGroups/rg-vnw-hub-uks-1/providers/Microsoft.Network/virtualNetworks/vnw-hub-uks-1/subnets/privateendpoints'
     location: location
     privateLinkServiceConnections: [
       {
@@ -252,7 +250,7 @@ module privateEndpointappservice 'br/public:avm/res/network/private-endpoint:0.7
           groupIds: [
             'sites'
           ]
-          privateLinkServiceId: '/subscriptions/f79a69b8-c7e7-413d-82c9-c7a111fc04b5/resourceGroups/rg-cps-ipam-dev-uksouth-001/providers/Microsoft.Web/sites/asn-cps-ipam-dev-uksouth-001'
+          privateLinkServiceId: '/subscriptions/5e0b33cf-2cfb-487b-ac44-f9877e08edb8/resourceGroups/rg-cps-ipam-dev-uksouth-001/providers/Microsoft.Web/sites/as-cps-ipam-dev-uksouth-001'
         }
       }
     ]
