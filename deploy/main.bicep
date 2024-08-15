@@ -45,7 +45,7 @@ var resourceNames = {
   cosmosAccountName: 'cm-cps-ipam-dev-uksouth-001'
   cosmosContainerName: 'cosmos-ctr-cps-ipam-dev-uksouth-001'
   cosmosDatabaseName: 'cosmos-db-cps-ipam-dev-uksouth-001'
-  keyVaultName: 'kv-jwt-uksouth-004'
+  keyVaultName: 'kv-jwt-uksouth-005'
   workspaceName: 'log-analytics-cps-ipam-dev-uksouth-001'
   managedIdentityName: '${namePrefix}-mi-${uniqueString(guid)}'
   resourceGroupName: 'rg-cps-ipam-dev-uksouth-001'
