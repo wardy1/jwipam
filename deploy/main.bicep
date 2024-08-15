@@ -45,7 +45,7 @@ var resourceNames = {
   cosmosAccountName: 'cm-cps-ipam-dev-uksouth-001'
   cosmosContainerName: 'cosmos-ctr-cps-ipam-dev-uksouth-001'
   cosmosDatabaseName: 'cosmos-db-cps-ipam-dev-uksouth-001'
-  keyVaultName: 'kv-jwt-uksouth-005'
+  keyVaultName: 'kv-jwt-uksouth-006'
   workspaceName: 'log-analytics-cps-ipam-dev-uksouth-001'
   managedIdentityName: '${namePrefix}-mi-${uniqueString(guid)}'
   resourceGroupName: 'rg-cps-ipam-dev-uksouth-001'
@@ -136,7 +136,7 @@ module privateEndpoint 'br/public:avm/res/network/private-endpoint:0.7.0' = {
           groupIds: [
             'vault'
           ]
-          privateLinkServiceId: '/subscriptions/5e0b33cf-2cfb-487b-ac44-f9877e08edb8/resourceGroups/rg-cps-ipam-dev-uksouth-001/providers/Microsoft.KeyVault/vaults/kv-jwt-uksouth-003'
+          privateLinkServiceId: '/subscriptions/5e0b33cf-2cfb-487b-ac44-f9877e08edb8/resourceGroups/rg-cps-ipam-dev-uksouth-001/providers/Microsoft.KeyVault/vaults/kv-jwt-uksouth-006'
         }
       }
     ]
