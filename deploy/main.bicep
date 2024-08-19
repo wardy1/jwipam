@@ -136,7 +136,7 @@ module privateEndpoint 'br/public:avm/res/network/private-endpoint:0.7.0' = {
           groupIds: [
             'vault'
           ]
-          privateLinkServiceId: '/subscriptions/5e0b33cf-2cfb-487b-ac44-f9877e08edb8/resourceGroups/rg-cps-ipam-dev-uksouth-001/providers/Microsoft.KeyVault/vaults/kv-jwt-uksouth-009'
+          privateLinkServiceId: '/subscriptions/5e0b33cf-2cfb-487b-ac44-f9877e08edb8/resourceGroups/rg-cps-ipam-dev-uksouth-002/providers/Microsoft.KeyVault/vaults/kv-jwt-uksouth-009'
         }
       }
     ]
@@ -181,7 +181,7 @@ module privateEndpointcosmos 'br/public:avm/res/network/private-endpoint:0.7.0' 
           groupIds: [
             'Sql'
           ]
-          privateLinkServiceId: '/subscriptions/5e0b33cf-2cfb-487b-ac44-f9877e08edb8/resourceGroups/rg-cps-ipam-dev-uksouth-001/providers/Microsoft.DocumentDB/databaseAccounts/cm-cps-ipam-dev-uksouth-001'
+          privateLinkServiceId: '/subscriptions/5e0b33cf-2cfb-487b-ac44-f9877e08edb8/resourceGroups/rg-cps-ipam-dev-uksouth-002/providers/Microsoft.DocumentDB/databaseAccounts/cm-cps-ipam-dev-uksouth-001'
         }
       }
     ]
@@ -251,7 +251,7 @@ module privateEndpointappservice 'br/public:avm/res/network/private-endpoint:0.7
           groupIds: [
             'sites'
           ]
-          privateLinkServiceId: '/subscriptions/5e0b33cf-2cfb-487b-ac44-f9877e08edb8/resourceGroups/rg-cps-ipam-dev-uksouth-001/providers/Microsoft.Web/sites/as-cps-ipam-dev-uksouth-001'
+          privateLinkServiceId: '/subscriptions/5e0b33cf-2cfb-487b-ac44-f9877e08edb8/resourceGroups/rg-cps-ipam-dev-uksouth-002x/providers/Microsoft.Web/sites/as-cps-ipam-dev-uksouth-001'
         }
       }
     ]
