@@ -40,6 +40,9 @@ param privateAcr bool
 @description('Uri for Private Container Registry')
 param privateAcrUri string
 
+@description('Subnet Id for App Service')
+param Subnetid string
+
 // ACR Uri Variable
 var acrUri = privateAcr ? privateAcrUri : 'azureipam.azurecr.io'
 
@@ -76,6 +79,7 @@ resource appService 'Microsoft.Web/sites@2021-02-01' = {
     }
   }
   properties: {
+    virtualNetworkSubnetId: Subnetid
     httpsOnly: true
     serverFarmId: appServicePlan.id
     keyVaultReferenceIdentity: managedIdentityId
@@ -133,26 +137,30 @@ resource appService 'Microsoft.Web/sites@2021-02-01' = {
             value: '2'
           }
         ],
-        deployAsContainer ? [
-          {
-            name: 'WEBSITE_ENABLE_SYNC_UPDATE_SITE'
-            value: 'true'
-          }
-          {
-            name: 'DOCKER_REGISTRY_SERVER_URL'
-            value: privateAcr ? 'https://${privateAcrUri}' : 'https://index.docker.io/v1'
-          }
-        ] : runFromPackage ? [
-          {
-            name: 'WEBSITE_RUN_FROM_PACKAGE'
-            value: '1'
-          }
-        ] : [
-          {
-            name: 'SCM_DO_BUILD_DURING_DEPLOYMENT'
-            value: 'true'
-          }
-        ]
+        deployAsContainer
+          ? [
+              {
+                name: 'WEBSITE_ENABLE_SYNC_UPDATE_SITE'
+                value: 'true'
+              }
+              {
+                name: 'DOCKER_REGISTRY_SERVER_URL'
+                value: privateAcr ? 'https://${privateAcrUri}' : 'https://index.docker.io/v1'
+              }
+            ]
+          : runFromPackage
+              ? [
+                  {
+                    name: 'WEBSITE_RUN_FROM_PACKAGE'
+                    value: '1'
+                  }
+                ]
+              : [
+                  {
+                    name: 'SCM_DO_BUILD_DURING_DEPLOYMENT'
+                    value: 'true'
+                  }
+                ]
       )
     }
   }

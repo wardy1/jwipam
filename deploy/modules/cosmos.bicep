@@ -40,6 +40,7 @@ resource cosmosAccount 'Microsoft.DocumentDB/databaseAccounts@2021-04-15' = {
     databaseAccountOfferType: 'Standard'
     enableAutomaticFailover: true
     disableKeyBasedMetadataWriteAccess: true
+    networkAclBypass: 'AzureServices'
   }
 }
 
