@@ -38,19 +38,19 @@ param namePrefix string = 'ipam'
 
 @description('IPAM Resource Names')
 var resourceNames = {
-  functionName: 'func-cps-ipam-dev-uksouth-001'
-  appServiceName: 'as-cps-ipam-dev-uksouth-001'
-  functionPlanName: 'funcpn-cps-ipam-dev-uksouth-001'
-  appServicePlanName: 'asep-cps-ipam-dev-uksouth-001'
-  cosmosAccountName: 'cm-cps-ipam-dev-uksouth-001'
-  cosmosContainerName: 'cosmos-ctr-cps-ipam-dev-uksouth-001'
-  cosmosDatabaseName: 'cosmos-db-cps-ipam-dev-uksouth-001'
+  functionName: 'func-cps-ipam-dev-uksouth-002'
+  appServiceName: 'as-cps-ipam-dev-uksouth-002'
+  functionPlanName: 'funcpn-cps-ipam-dev-uksouth-002'
+  appServicePlanName: 'asep-cps-ipam-dev-uksouth-002'
+  cosmosAccountName: 'cm-cps-ipam-dev-uksouth-002'
+  cosmosContainerName: 'cosmos-ctr-cps-ipam-dev-uksouth-002'
+  cosmosDatabaseName: 'cosmos-db-cps-ipam-dev-uksouth-002'
   keyVaultName: 'kv-jwt-uksouth-009'
   workspaceName: 'log-analytics-cps-ipam-dev-uksouth-001'
   managedIdentityName: '${namePrefix}-mi-${uniqueString(guid)}'
   resourceGroupName: 'rg-cps-ipam-dev-uksouth-002'
-  storageAccountName: 'st-cps-ipam-dev-uksouth-001'
-  containerRegistryName: 'cr-cps-ipam-dev-uksouth-001'
+  storageAccountName: 'st-cps-ipam-dev-uksouth-002'
+  containerRegistryName: 'crcpsipamdevuksouth001'
 }
 
 // Resource Group
@@ -181,7 +181,7 @@ module privateEndpointcosmos 'br/public:avm/res/network/private-endpoint:0.7.0' 
           groupIds: [
             'Sql'
           ]
-          privateLinkServiceId: '/subscriptions/5e0b33cf-2cfb-487b-ac44-f9877e08edb8/resourceGroups/rg-cps-ipam-dev-uksouth-002/providers/Microsoft.DocumentDB/databaseAccounts/cm-cps-ipam-dev-uksouth-001'
+          privateLinkServiceId: '/subscriptions/5e0b33cf-2cfb-487b-ac44-f9877e08edb8/resourceGroups/rg-cps-ipam-dev-uksouth-002/providers/Microsoft.DocumentDB/databaseAccounts/cm-cps-ipam-dev-uksouth-002'
         }
       }
     ]
@@ -251,7 +251,7 @@ module privateEndpointappservice 'br/public:avm/res/network/private-endpoint:0.7
           groupIds: [
             'sites'
           ]
-          privateLinkServiceId: '/subscriptions/5e0b33cf-2cfb-487b-ac44-f9877e08edb8/resourceGroups/rg-cps-ipam-dev-uksouth-002x/providers/Microsoft.Web/sites/as-cps-ipam-dev-uksouth-001'
+          privateLinkServiceId: '/subscriptions/5e0b33cf-2cfb-487b-ac44-f9877e08edb8/resourceGroups/rg-cps-ipam-dev-uksouth-002/providers/Microsoft.Web/sites/as-cps-ipam-dev-uksouth-002'
         }
       }
     ]
