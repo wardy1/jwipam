@@ -36,5 +36,5 @@ jobs:
         working-directory: deploy
         id: deployScript
         shell: pwsh
-        run: ./deploy.ps1 -Location "uksouth" -PrivateACR -ParameterFile "main.parameters.bicep.json" -Debug
+        run: ./deploy.ps1 -Location "uksouth" -ParameterFile "main.parameters.bicep.json"
     

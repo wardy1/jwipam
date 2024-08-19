@@ -26,7 +26,6 @@ param uiAppId string = '00000000-0000-0000-0000-000000000000'
 param engineAppId string
 
 @secure()
-@description('IPAM-Engine App Registration Client Secret')
 param engineAppSecret string
 
 @description('Tags')
