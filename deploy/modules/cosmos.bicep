@@ -45,6 +45,11 @@ resource cosmosAccount 'Microsoft.DocumentDB/databaseAccounts@2021-04-15' = {
     virtualNetworkRules: []
     networkAclBypassResourceIds: []
     publicNetworkAccess: 'Enabled'
+    ipRules: [
+      {
+        ipAddressOrRange: '0.0.0.0'
+      }
+    ]
   }
 }
 
