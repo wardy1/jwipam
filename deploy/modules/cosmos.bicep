@@ -41,6 +41,10 @@ resource cosmosAccount 'Microsoft.DocumentDB/databaseAccounts@2021-04-15' = {
     enableAutomaticFailover: true
     disableKeyBasedMetadataWriteAccess: true
     networkAclBypass: 'AzureServices'
+    isVirtualNetworkFilterEnabled: false
+    virtualNetworkRules: []
+    networkAclBypassResourceIds: []
+    publicNetworkAccess: 'Enabled'
   }
 }
 
